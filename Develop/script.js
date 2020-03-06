@@ -116,7 +116,7 @@ function copyPassword(){
 
     document.getElementById('display').select();
 
-    document.getElementById('Copy');
+    document.execCommand('Copy');
 
     alert("Password copied to clipboard");
 }
