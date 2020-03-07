@@ -1,12 +1,12 @@
 //DOM elements
-const resultEl = document.getElementById('result');
+const resultEl = document.getElementById('final-result');
 const lengthEl = document.getElementById('length');
 const uppercaseEl = document.getElementById('uppercase');
 const lowercaseEl = document.getElementById('lowercase');
 const numbersEl = document.getElementById('numbers');
 const symbolsEl = document.getElementById('symbols');
 const generateEl = document.getElementById('generate');
-const clipboardEl = document.getElementById('clipboard');
+var clipboardEl = document.querySelector('#copyPassword');
 
 const randomFunc = {
   lower: getRandomLower,
@@ -107,16 +107,24 @@ function getRandomSymbol() {
 
 //add password to textbox/display area
 function generate(){
-  document.getElementById('display').value = finalPassword
+  document.getElementById('display').value = finalPassword;
 }
 
 
-//function to copy password to clipboard
+clipboardEl.addEventListener("click", function() {
+  copyPassword();
+});
+
+
 function copyPassword(){
+  var copiedPassword = document.getElementById('final-result');
+  var textArea = document.createElement("textarea");
+    textArea.value = copiedPassword.textContent;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand("Copy");
+    textArea.remove();
 
-    document.getElementById('display').select();
-
-    document.execCommand('Copy');
-
-    alert("Password copied to clipboard");
+    alert("Password copied to clipboard" + copiedPassword.value);
 }
+
